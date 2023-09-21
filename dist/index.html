@@ -1,63 +1,41 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>replit</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-</head>
-
-<body>
-  <div class="board">
-    <div class="list">
-      <h2 class="title">Today</h2>
-      <div class="cards">
-        <div class="cards-container">
-          <div class="card-wrapper">
-            <div class="description-wrapper">
-              <textarea class="txta" placeholder="Add a description"></textarea>
-            </div>
-            <div class="card-info">
-              <div class="info-wrapper">
-                <div class="dropdown">
-                  <button class="dropbtn"></button>
-                  <div id="myDropdown" class="dropdown-content">
-                    <button class="low-pr" href="#"></button>
-                    <button class="mid-pr" href="#"></button>
-                    <button class="high-pr" href="#"></button>
-                  </div>
-                </div>
-                <!-- <button class="priority green"></button> -->
-                <input class="date-input" type="date" id="datepicker">
-                <label class="date" for="datepicker" onclick="document.getElementById('datepicker').showPicker();">
-                  Apr 23
-                </label>
-              </div>
-              <div class="checkDiv">
-                <span class="material-symbols-outlined">delete</span>
-                <input type="checkbox" id="checkbox" name="checkbox" class="checkbox" checked />
-              </div>
-            </div>
-          </div>
+  <body>
+    <div class="board">
+      <div class="list">
+        <h2 class="title">Today</h2>
+        <div class="cards">
+          <div class="cards-container"></div>
+          <button class="add-task">
+            <span class="material-symbols-outlined">add</span>
+            <span>Add a task</span>
+          </button>
         </div>
-        <button class="add-task">
-          <span class="material-symbols-outlined">add</span>
-          <span>Add a task</span>
-        </button>
       </div>
     </div>
-  </div>
 
-  <!-- <script type="module" src="script.js" defer></script> -->
-  <script src="bundle.js"></script>
-</body>
-
+    <!-- <script type="module" src="script.js" defer></script> -->
+    <script src="main.js"></script>
+  </body>
 </html>

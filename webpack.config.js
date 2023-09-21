@@ -4,8 +4,12 @@ module.exports = {
   mode: 'development',
   entry: './src/index.js',
   devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+    hot: true,
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -16,4 +20,7 @@ module.exports = {
       },
     ],
   },
+  // optimization: {
+  //   runtimeChunk: 'single',
+  // },
 };
