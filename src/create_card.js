@@ -1,3 +1,4 @@
+import dateOutput from "/src/date.js";
 import textareaWrap from "/src/textarea.js";
 
 export default function newCard(task) {
@@ -17,7 +18,6 @@ export default function newCard(task) {
   txtArea.classList.add("txta", "txtstuff");
   txtArea.placeholder = "Add a description";
   textareaWrap(task, txtArea);
-  // task.description = txtArea.value;
 
   const cardInf = newEl("div");
   cardInf.classList.add("card-info");
@@ -54,7 +54,7 @@ export default function newCard(task) {
 
   const dateLabel = newEl("label");
   dateLabel.classList.add("date");
-  dateLabel.innerHTML = "Apr 23";
+  dateOutput(dateInput, dateLabel);
   dateLabel.setAttribute("for", "datepicker");
   dateLabel.addEventListener("click", () => {
     dateInput.showPicker();
