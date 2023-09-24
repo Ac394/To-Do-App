@@ -28,7 +28,6 @@ export default function textareaWrap(task, textarea) {
   textarea.addEventListener("input", () => {
     task.description = textarea.value;
     console.log(task.description);
-    console.log(task);
 
     // Append hiddendiv to parent of textarea, so the size is correct
     textarea.parentNode.appendChild(hiddenDiv);

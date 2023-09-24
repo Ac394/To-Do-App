@@ -32,8 +32,13 @@ export default function newCard(task) {
   dropBtn.classList.add("dropbtn");
   dropBtn.addEventListener("click", () => {
     dropContent.classList.toggle("show");
-  });
 
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".dropdown")) return;
+
+      dropContent.classList.remove("show");
+    });
+  });
   const dropContent = newEl("div");
   dropContent.classList.add("dropdown-content");
   dropContent.setAttribute("id", "myDropdown");
@@ -51,10 +56,11 @@ export default function newCard(task) {
   dateInput.classList.add("date-input");
   dateInput.setAttribute("type", "date");
   dateInput.setAttribute("id", "datepicker");
+  dateInput.required = true;
 
   const dateLabel = newEl("label");
   dateLabel.classList.add("date");
-  dateOutput(dateInput, dateLabel);
+  dateOutput(task, dateInput, dateLabel);
   dateLabel.setAttribute("for", "datepicker");
   dateLabel.addEventListener("click", () => {
     dateInput.showPicker();
@@ -75,6 +81,10 @@ export default function newCard(task) {
   checkbox.setAttribute("id", "checkbox");
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("name", "checkbox");
+  checkbox.addEventListener("change", () => {
+    task.check = checkbox.checked;
+    console.log(task.check);
+  });
 
   descrWrap.appendChild(txtArea);
   dropContent.appendChild(lowBtn, midBtn, highBtn);

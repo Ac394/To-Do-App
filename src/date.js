@@ -1,13 +1,15 @@
-import { compareAsc, format } from "date-fns";
+import { compareAsc, format, parseISO, parse } from "date-fns";
 
-export default function dateOutput(input, label) {
+export default function dateOutput(task, input, label) {
   input.value = new Date().toJSON().slice(0, 10);
-  label.innerHTML = input.value;
 
   const dateUpdate = () => {
-    label.innerHTML = input.value;
-    console.log(input.value);
+    const dateFormat = format(parseISO(input.value), "dd MMM yyyy");
+    label.innerHTML = dateFormat;
+    task.dueDate = dateFormat;
+    console.log(task.dueDate);
   };
 
+  dateUpdate();
   input.addEventListener("change", dateUpdate);
 }
