@@ -159,7 +159,7 @@ textarea:focus-visible {
 }
 
 .blue {
-  background-color: #85b8ff;
+  background-color: #3498db;
 }
 
 .green {
@@ -220,9 +220,13 @@ input[type="date"]::-ms-clear {
   border-radius: 5px;
 }
 
+.dropdown-content > button {
+  cursor: pointer;
+}
+
 /* Change color of dropdown links on hover */
 .dropdown-content button:hover {
-  background-color: #ddd;
+  opacity: 80%;
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */

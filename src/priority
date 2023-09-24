@@ -1,0 +1,33 @@
+const lowCol = "#3498db",
+  midCol = "#faa53d",
+  highCol = "#f87462";
+
+export function changePriority(modal, task, el, priority) {
+  const priorityUpdate = () => {
+    switch (priority) {
+      case "low":
+        task.priority = "low";
+        el.style.backgroundColor = lowCol;
+        break;
+      case "mid":
+        task.priority = "mid";
+        el.style.backgroundColor = midCol;
+        break;
+      case "high":
+        task.priority = "high";
+        el.style.backgroundColor = highCol;
+        break;
+    }
+  };
+
+  priorityUpdate();
+
+  console.log(task.priority);
+
+  modal.classList.remove("show");
+}
+
+export function defaultPriority(task, el) {
+  task.priority = "low";
+  el.style.backgroundColor = lowCol;
+}

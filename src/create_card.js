@@ -1,5 +1,6 @@
 import dateOutput from "/src/date.js";
 import textareaWrap from "/src/textarea.js";
+import { changePriority, defaultPriority } from "./priority";
 
 export default function newCard(task) {
   const newEl = (e) => {
@@ -30,6 +31,7 @@ export default function newCard(task) {
 
   const dropBtn = newEl("button");
   dropBtn.classList.add("dropbtn");
+  defaultPriority(task, dropBtn);
   dropBtn.addEventListener("click", () => {
     dropContent.classList.toggle("show");
 
@@ -39,18 +41,28 @@ export default function newCard(task) {
       dropContent.classList.remove("show");
     });
   });
+
   const dropContent = newEl("div");
   dropContent.classList.add("dropdown-content");
   dropContent.setAttribute("id", "myDropdown");
 
   const lowBtn = newEl("button");
   lowBtn.classList.add("low-pr");
+  lowBtn.addEventListener("click", () => {
+    changePriority(dropContent, task, dropBtn, "low");
+  });
 
   const midBtn = newEl("button");
   midBtn.classList.add("mid-pr");
+  midBtn.addEventListener("click", () => {
+    changePriority(dropContent, task, dropBtn, "mid");
+  });
 
   const highBtn = newEl("button");
   highBtn.classList.add("high-pr");
+  highBtn.addEventListener("click", () => {
+    changePriority(dropContent, task, dropBtn, "high");
+  });
 
   const dateInput = newEl("input");
   dateInput.classList.add("date-input");
