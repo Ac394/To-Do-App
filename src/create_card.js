@@ -1,6 +1,7 @@
 import dateOutput from "/src/date.js";
 import textareaWrap from "/src/textarea.js";
 import { changePriority, defaultPriority } from "./priority";
+import deleteTask from "./deleteTask";
 
 export default function newCard(task) {
   const newEl = (e) => {
@@ -86,6 +87,7 @@ export default function newCard(task) {
   delIcon.classList.add("material-symbols-outlined");
   delIcon.addEventListener("click", () => {
     cardWrap.remove();
+    // deleteTask(task);
   });
 
   const checkbox = newEl("input");
@@ -96,6 +98,7 @@ export default function newCard(task) {
   checkbox.addEventListener("change", () => {
     task.check = checkbox.checked;
     console.log(task.check);
+    console.log(task);
   });
 
   descrWrap.appendChild(txtArea);
