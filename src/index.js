@@ -1,12 +1,15 @@
-import { compareAsc, format } from "date-fns";
-import "./style.css";
-import textareaWrap from "/src/textarea.js";
-import newCard from "/src/create_card.js";
+import newCard from "./cardCreate";
 
-const tasks = [];
+export const tasks = [];
 
 class Task {
-  constructor(description, dueDate, priority, check, project) {
+  constructor(
+    description = "",
+    dueDate,
+    priority = "high",
+    check = "true",
+    project = "Lorem Ipsum"
+  ) {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
@@ -63,4 +66,7 @@ newCard(createFirstCard);
 // Event listener for Add Task button
 const addTask = document.querySelector(".add-task");
 
-addTask.addEventListener("click", newCard);
+addTask.addEventListener("click", () => newCard(new Task()));
+
+const title = document.querySelector(".title");
+title.addEventListener("click", () => console.log(tasks));

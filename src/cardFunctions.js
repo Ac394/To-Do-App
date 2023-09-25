@@ -1,4 +1,44 @@
-export default function textareaWrap(task, textarea) {
+import { compareAsc, format, parseISO, parse } from "date-fns";
+import { tasks } from ".";
+
+export function dateOutput(task, input, label) {
+  input.value = new Date().toJSON().slice(0, 10);
+
+  const dateUpdate = () => {
+    const dateFormat = format(parseISO(input.value), "dd MMM yyyy");
+    label.innerHTML = dateFormat;
+    task.dueDate = dateFormat;
+    console.log(task.dueDate);
+  };
+
+  dateUpdate();
+  input.addEventListener("change", dateUpdate);
+}
+
+export function changePriority(task, el, priority) {
+  switch (priority) {
+    case "low":
+      task.priority = "low";
+      el.style.backgroundColor = "#3498db";
+      break;
+    case "mid":
+      task.priority = "mid";
+      el.style.backgroundColor = "#faa53d";
+      break;
+    case "high":
+      task.priority = "high";
+      el.style.backgroundColor = "#f87462";
+      break;
+  }
+
+  console.log(task.priority);
+}
+
+export function defaultPriority(task, el) {
+  el.style.backgroundColor = lowCol;
+}
+
+export function textareaWrap(task, textarea) {
   // Targets all textareas with class "txta"
   let hiddenDiv = document.createElement("div"),
     content = null;
@@ -59,4 +99,21 @@ export default function textareaWrap(task, textarea) {
     hiddenDiv.style.visibility = "visible";
     hiddenDiv.style.display = "none";
   });
+}
+
+export function checkbox(task) {
+  task.check = checkbox.checked;
+  console.log(task.check);
+  console.log(task);
+}
+
+export function deleteTask(taskToDelete) {
+  const taskIndex = tasks.indexOf(taskToDelete);
+  if (taskIndex !== -1) {
+    tasks.splice(taskIndex, 1);
+  }
+}
+
+export function addCard(taskToAdd) {
+  tasks.push(taskToAdd);
 }

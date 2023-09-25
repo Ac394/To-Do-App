@@ -1,7 +1,12 @@
-import dateOutput from "/src/date.js";
-import textareaWrap from "/src/textarea.js";
-import { changePriority, defaultPriority } from "./priority";
-import deleteTask from "./deleteTask";
+import {
+  dateOutput,
+  changePriority,
+  defaultPriority,
+  textareaWrap,
+  deleteTask,
+  addCard,
+  checkbox,
+} from "./cardFunctions.js";
 
 export default function newCard(task) {
   const newEl = (e) => {
@@ -32,7 +37,7 @@ export default function newCard(task) {
 
   const dropBtn = newEl("button");
   dropBtn.classList.add("dropbtn");
-  defaultPriority(task, dropBtn);
+  changePriority(task, dropBtn, task.priority);
   dropBtn.addEventListener("click", () => {
     dropContent.classList.toggle("show");
 
@@ -50,19 +55,22 @@ export default function newCard(task) {
   const lowBtn = newEl("button");
   lowBtn.classList.add("low-pr");
   lowBtn.addEventListener("click", () => {
-    changePriority(dropContent, task, dropBtn, "low");
+    changePriority(task, dropBtn, "low");
+    dropContent.classList.remove("show");
   });
 
   const midBtn = newEl("button");
   midBtn.classList.add("mid-pr");
   midBtn.addEventListener("click", () => {
-    changePriority(dropContent, task, dropBtn, "mid");
+    changePriority(task, dropBtn, "mid");
+    dropContent.classList.remove("show");
   });
 
   const highBtn = newEl("button");
   highBtn.classList.add("high-pr");
   highBtn.addEventListener("click", () => {
-    changePriority(dropContent, task, dropBtn, "high");
+    changePriority(task, dropBtn, "high");
+    dropContent.classList.remove("show");
   });
 
   const dateInput = newEl("input");
@@ -87,7 +95,7 @@ export default function newCard(task) {
   delIcon.classList.add("material-symbols-outlined");
   delIcon.addEventListener("click", () => {
     cardWrap.remove();
-    // deleteTask(task);
+    deleteTask(task);
   });
 
   const checkbox = newEl("input");
@@ -95,10 +103,9 @@ export default function newCard(task) {
   checkbox.setAttribute("id", "checkbox");
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("name", "checkbox");
+  checkbox.checked = task.check;
   checkbox.addEventListener("change", () => {
-    task.check = checkbox.checked;
-    console.log(task.check);
-    console.log(task);
+    checkbox(task);
   });
 
   descrWrap.appendChild(txtArea);
@@ -117,4 +124,7 @@ export default function newCard(task) {
   cardWrap.appendChild(descrWrap);
   cardWrap.appendChild(cardInf);
   cardsContainer.appendChild(cardWrap);
+
+  addCard(task);
+  console.log(task);
 }
