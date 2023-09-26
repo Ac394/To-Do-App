@@ -5,9 +5,9 @@ export const tasks = [];
 class Task {
   constructor(
     description = "",
-    dueDate,
+    dueDate = new Date().toJSON().slice(0, 10),
     priority = "high",
-    check = "true",
+    check = true,
     project = "Lorem Ipsum"
   ) {
     this.description = description;

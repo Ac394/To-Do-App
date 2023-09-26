@@ -1,11 +1,10 @@
 import {
   dateOutput,
   changePriority,
-  defaultPriority,
   textareaWrap,
   deleteTask,
   addCard,
-  checkbox,
+  checkboxUpdate,
 } from "./cardFunctions.js";
 
 export default function newCard(task) {
@@ -73,19 +72,23 @@ export default function newCard(task) {
     dropContent.classList.remove("show");
   });
 
+  const dateLabel = newEl("label");
+  dateLabel.classList.add("date");
+  console.log(`This is the task.value inside cardCreate ${task.dueDate}`);
+  dateOutput(task, task.dueDate, dateLabel);
+  dateLabel.setAttribute("for", "datepicker");
+  dateLabel.addEventListener("click", () => {
+    dateInput.showPicker();
+  });
+
   const dateInput = newEl("input");
   dateInput.classList.add("date-input");
   dateInput.setAttribute("type", "date");
   dateInput.setAttribute("id", "datepicker");
   dateInput.required = true;
-
-  const dateLabel = newEl("label");
-  dateLabel.classList.add("date");
-  dateOutput(task, dateInput, dateLabel);
-  dateLabel.setAttribute("for", "datepicker");
-  dateLabel.addEventListener("click", () => {
-    dateInput.showPicker();
-  });
+  dateInput.addEventListener("change", () =>
+    dateOutput(task, dateInput.value, dateLabel)
+  );
 
   const checkDiv = newEl("div");
   checkDiv.classList.add("checkDiv");
@@ -105,7 +108,7 @@ export default function newCard(task) {
   checkbox.setAttribute("name", "checkbox");
   checkbox.checked = task.check;
   checkbox.addEventListener("change", () => {
-    checkbox(task);
+    checkboxUpdate(task, checkbox);
   });
 
   descrWrap.appendChild(txtArea);
@@ -126,5 +129,6 @@ export default function newCard(task) {
   cardsContainer.appendChild(cardWrap);
 
   addCard(task);
+  localStorage.setItem([1], JSON.stringify(task));
   console.log(task);
 }

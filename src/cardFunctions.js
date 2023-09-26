@@ -1,18 +1,11 @@
 import { compareAsc, format, parseISO, parse } from "date-fns";
 import { tasks } from ".";
 
-export function dateOutput(task, input, label) {
-  input.value = new Date().toJSON().slice(0, 10);
-
-  const dateUpdate = () => {
-    const dateFormat = format(parseISO(input.value), "dd MMM yyyy");
-    label.innerHTML = dateFormat;
-    task.dueDate = dateFormat;
-    console.log(task.dueDate);
-  };
-
-  dateUpdate();
-  input.addEventListener("change", dateUpdate);
+export function dateOutput(task, date, label) {
+  const dateFormat = format(parseISO(date), "dd MMM yyyy");
+  label.innerHTML = dateFormat;
+  task.dueDate = dateFormat;
+  console.log(task.dueDate);
 }
 
 export function changePriority(task, el, priority) {
@@ -32,10 +25,6 @@ export function changePriority(task, el, priority) {
   }
 
   console.log(task.priority);
-}
-
-export function defaultPriority(task, el) {
-  el.style.backgroundColor = lowCol;
 }
 
 export function textareaWrap(task, textarea) {
@@ -101,7 +90,7 @@ export function textareaWrap(task, textarea) {
   });
 }
 
-export function checkbox(task) {
+export function checkboxUpdate(task, checkbox) {
   task.check = checkbox.checked;
   console.log(task.check);
   console.log(task);
@@ -116,4 +105,5 @@ export function deleteTask(taskToDelete) {
 
 export function addCard(taskToAdd) {
   tasks.push(taskToAdd);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
