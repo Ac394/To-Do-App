@@ -4,7 +4,7 @@ import { tasks } from ".";
 export function dateOutput(task, date, label) {
   const dateFormat = format(parseISO(date), "dd MMM yyyy");
   label.innerHTML = dateFormat;
-  task.dueDate = dateFormat;
+  task.dueDate = date;
   updateStorage();
 
   console.log(task.dueDate);
@@ -56,12 +56,7 @@ export function textareaWrap(task, textarea) {
   hiddenDiv.style.whiteSpace = "pre-wrap";
   hiddenDiv.style.wordWrap = "break-word";
 
-  // Note: Use 'keyup' instead of 'input'
-  // if you want older IE support
-  textarea.addEventListener("input", () => {
-    task.description = textarea.value;
-    console.log(task.description);
-
+  const txtaDiv = () => {
     // Append hiddendiv to parent of textarea, so the size is correct
     textarea.parentNode.appendChild(hiddenDiv);
 
@@ -91,8 +86,20 @@ export function textareaWrap(task, textarea) {
     // Make the hidden div display:none again
     hiddenDiv.style.visibility = "visible";
     hiddenDiv.style.display = "none";
+  };
+
+  // Note: Use 'keyup' instead of 'input'
+  // if you want older IE support
+  textarea.addEventListener("input", () => {
+    task.description = textarea.value;
+    console.log(task.description);
+    txtaDiv();
     updateStorage();
   });
+
+  // Default text
+  textarea.value = task.description;
+  txtaDiv();
 }
 
 export function checkboxUpdate(task, checkbox) {
@@ -116,5 +123,7 @@ export function addCard(taskToAdd) {
 }
 
 function updateStorage() {
+  // localStorage.removeItem("tasks");
   localStorage.setItem("tasks", JSON.stringify(tasks));
+  console.log(`This is the array from update ${tasks}`);
 }

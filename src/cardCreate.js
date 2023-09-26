@@ -23,7 +23,6 @@ export default function newCard(task) {
   const txtArea = newEl("textarea");
   txtArea.classList.add("txta", "txtstuff");
   txtArea.placeholder = "Add a description";
-  textareaWrap(task, txtArea);
 
   const cardInf = newEl("div");
   cardInf.classList.add("card-info");
@@ -36,7 +35,6 @@ export default function newCard(task) {
 
   const dropBtn = newEl("button");
   dropBtn.classList.add("dropbtn");
-  changePriority(task, dropBtn, task.priority);
   dropBtn.addEventListener("click", () => {
     dropContent.classList.toggle("show");
 
@@ -75,7 +73,6 @@ export default function newCard(task) {
   const dateLabel = newEl("label");
   dateLabel.classList.add("date");
   console.log(`This is the task.value inside cardCreate ${task.dueDate}`);
-  dateOutput(task, task.dueDate, dateLabel);
   dateLabel.setAttribute("for", "datepicker");
   dateLabel.addEventListener("click", () => {
     dateInput.showPicker();
@@ -128,7 +125,10 @@ export default function newCard(task) {
   cardWrap.appendChild(cardInf);
   cardsContainer.appendChild(cardWrap);
 
+  textareaWrap(task, txtArea);
+  changePriority(task, dropBtn, task.priority);
+  dateOutput(task, task.dueDate, dateLabel);
+
   addCard(task);
-  localStorage.setItem([1], JSON.stringify(task));
   console.log(task);
 }

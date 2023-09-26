@@ -58,10 +58,32 @@ class Task {
   // }
 }
 
+// Get tasks from local storage and generate UI
+(() => {
+  const storedTaskString = localStorage.getItem("tasks");
+  const storedTasks = JSON.parse(storedTaskString);
+  console.log(`This is parse objects ${storedTasks}`);
+  if (storedTaskString !== null) {
+    // console.log(`This is the storage ${taskStorage}`);
+    // tasks.push(JSON.parse(taskStorage));
+    // console.log(`This is the new array ${tasks[0][0].priority}`);
+    storedTasks.forEach((task) => {
+      // console.log(`My name is ${task.dueDate}`);
+      const d = task.description,
+        dd = task.dueDate,
+        p = task.priority,
+        c = task.check,
+        pr = task.project;
+
+      newCard(new Task(d, dd, p, c, pr));
+    });
+  }
+})();
+
 // Create the first card by default
 
-let createFirstCard = new Task();
-newCard(createFirstCard);
+// let createFirstCard = new Task();
+// newCard(createFirstCard);
 
 // Event listener for Add Task button
 const addTask = document.querySelector(".add-task");
@@ -70,11 +92,3 @@ addTask.addEventListener("click", () => newCard(new Task()));
 
 const title = document.querySelector(".title");
 title.addEventListener("click", () => console.log(tasks));
-
-// Get tasks from local storage and generate UI
-(() => {
-  const taskStorage = localStorage.getItem("tasks");
-  if (taskStorage !== null) {
-    tasks.push(taskStorage);
-  }
-})();
