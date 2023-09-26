@@ -70,3 +70,11 @@ addTask.addEventListener("click", () => newCard(new Task()));
 
 const title = document.querySelector(".title");
 title.addEventListener("click", () => console.log(tasks));
+
+// Get tasks from local storage and generate UI
+(() => {
+  const taskStorage = localStorage.getItem("tasks");
+  if (taskStorage !== null) {
+    tasks.push(taskStorage);
+  }
+})();

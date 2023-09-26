@@ -5,6 +5,8 @@ export function dateOutput(task, date, label) {
   const dateFormat = format(parseISO(date), "dd MMM yyyy");
   label.innerHTML = dateFormat;
   task.dueDate = dateFormat;
+  updateStorage();
+
   console.log(task.dueDate);
 }
 
@@ -23,6 +25,8 @@ export function changePriority(task, el, priority) {
       el.style.backgroundColor = "#f87462";
       break;
   }
+
+  updateStorage();
 
   console.log(task.priority);
 }
@@ -87,11 +91,13 @@ export function textareaWrap(task, textarea) {
     // Make the hidden div display:none again
     hiddenDiv.style.visibility = "visible";
     hiddenDiv.style.display = "none";
+    updateStorage();
   });
 }
 
 export function checkboxUpdate(task, checkbox) {
   task.check = checkbox.checked;
+  updateStorage();
   console.log(task.check);
   console.log(task);
 }
@@ -101,9 +107,14 @@ export function deleteTask(taskToDelete) {
   if (taskIndex !== -1) {
     tasks.splice(taskIndex, 1);
   }
+  updateStorage();
 }
 
 export function addCard(taskToAdd) {
   tasks.push(taskToAdd);
+  updateStorage();
+}
+
+function updateStorage() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
