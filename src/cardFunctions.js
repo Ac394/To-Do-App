@@ -1,28 +1,28 @@
 import { compareAsc, format, parseISO, parse } from "date-fns";
 import { tasks } from ".";
 
-export function dateOutput(task, date, label) {
-  const dateFormat = format(parseISO(date), "dd MMM yyyy");
-  label.innerHTML = dateFormat;
-  task.dueDate = date;
+export function updateDate(task, newValue, element) {
+  const dateFormat = format(parseISO(newValue), "dd MMM yyyy");
+  element.innerHTML = dateFormat;
+  task.dueDate = newValue;
   updateStorage();
 
   console.log(task.dueDate);
 }
 
-export function changePriority(task, el, priority) {
-  switch (priority) {
+export function updatePriority(task, newValue, label) {
+  switch (newValue) {
     case "low":
       task.priority = "low";
-      el.style.backgroundColor = "#3498db";
+      label.style.backgroundColor = "#3498db";
       break;
     case "mid":
       task.priority = "mid";
-      el.style.backgroundColor = "#faa53d";
+      label.style.backgroundColor = "#faa53d";
       break;
     case "high":
       task.priority = "high";
-      el.style.backgroundColor = "#f87462";
+      label.style.backgroundColor = "#f87462";
       break;
   }
 
@@ -102,11 +102,11 @@ export function textareaWrap(task, textarea) {
   txtaDiv();
 }
 
-export function checkboxUpdate(task, checkbox) {
-  task.check = checkbox.checked;
+export function updateCheckbox(task, newValue, checkbox) {
+  task.check = newValue;
+  checkbox.checked = newValue;
   updateStorage();
   console.log(task.check);
-  console.log(task);
 }
 
 export function deleteTask(taskToDelete) {
@@ -123,7 +123,6 @@ export function addCard(taskToAdd) {
 }
 
 function updateStorage() {
-  // localStorage.removeItem("tasks");
   localStorage.setItem("tasks", JSON.stringify(tasks));
   console.log(`This is the array from update ${tasks}`);
 }

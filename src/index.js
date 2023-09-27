@@ -16,46 +16,6 @@ class Task {
     this.check = check;
     this.project = project;
   }
-
-  // get description() {
-  //   return this.description;
-  // }
-
-  // set description(updateDescription) {
-  //   this.description = updateDescription;
-  // }
-
-  // get dueDate() {
-  //   return this.dueDate;
-  // }
-
-  // set dueDate(updateDate) {
-  //   this.dueDate = updateDate;
-  // }
-
-  // get priority() {
-  //   return this.priority;
-  // }
-
-  // set priority(updatePriority) {
-  //   this.priority = updatePriority;
-  // }
-
-  // get check() {
-  //   return this.check;
-  // }
-
-  // set check(updateCheck) {
-  //   this.check = updateCheck;
-  // }
-
-  // get project() {
-  //   return this.project;
-  // }
-
-  // set project(updateProject) {
-  //   this.project = updateProject;
-  // }
 }
 
 // Get tasks from local storage and generate UI
@@ -64,11 +24,7 @@ class Task {
   const storedTasks = JSON.parse(storedTaskString);
   console.log(`This is parse objects ${storedTasks}`);
   if (storedTaskString !== null) {
-    // console.log(`This is the storage ${taskStorage}`);
-    // tasks.push(JSON.parse(taskStorage));
-    // console.log(`This is the new array ${tasks[0][0].priority}`);
     storedTasks.forEach((task) => {
-      // console.log(`My name is ${task.dueDate}`);
       const d = task.description,
         dd = task.dueDate,
         p = task.priority,
@@ -80,15 +36,10 @@ class Task {
   }
 })();
 
-// Create the first card by default
-
-// let createFirstCard = new Task();
-// newCard(createFirstCard);
-
 // Event listener for Add Task button
 const addTask = document.querySelector(".add-task");
-
 addTask.addEventListener("click", () => newCard(new Task()));
 
+// Click title to debug
 const title = document.querySelector(".title");
 title.addEventListener("click", () => console.log(tasks));

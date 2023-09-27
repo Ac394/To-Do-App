@@ -1,10 +1,10 @@
 import {
-  dateOutput,
-  changePriority,
+  updateDate,
+  updatePriority,
   textareaWrap,
   deleteTask,
   addCard,
-  checkboxUpdate,
+  updateCheckbox,
 } from "./cardFunctions.js";
 
 export default function newCard(task) {
@@ -52,21 +52,21 @@ export default function newCard(task) {
   const lowBtn = newEl("button");
   lowBtn.classList.add("low-pr");
   lowBtn.addEventListener("click", () => {
-    changePriority(task, dropBtn, "low");
+    updatePriority(task, "low", dropBtn);
     dropContent.classList.remove("show");
   });
 
   const midBtn = newEl("button");
   midBtn.classList.add("mid-pr");
   midBtn.addEventListener("click", () => {
-    changePriority(task, dropBtn, "mid");
+    updatePriority(task, "mid", dropBtn);
     dropContent.classList.remove("show");
   });
 
   const highBtn = newEl("button");
   highBtn.classList.add("high-pr");
   highBtn.addEventListener("click", () => {
-    changePriority(task, dropBtn, "high");
+    updatePriority(task, "high", dropBtn);
     dropContent.classList.remove("show");
   });
 
@@ -74,9 +74,7 @@ export default function newCard(task) {
   dateLabel.classList.add("date");
   console.log(`This is the task.value inside cardCreate ${task.dueDate}`);
   dateLabel.setAttribute("for", "datepicker");
-  dateLabel.addEventListener("click", () => {
-    dateInput.showPicker();
-  });
+  dateLabel.addEventListener("click", () => dateInput.showPicker());
 
   const dateInput = newEl("input");
   dateInput.classList.add("date-input");
@@ -84,7 +82,7 @@ export default function newCard(task) {
   dateInput.setAttribute("id", "datepicker");
   dateInput.required = true;
   dateInput.addEventListener("change", () =>
-    dateOutput(task, dateInput.value, dateLabel)
+    updateDate(task, dateInput.value, dateLabel)
   );
 
   const checkDiv = newEl("div");
@@ -103,9 +101,8 @@ export default function newCard(task) {
   checkbox.setAttribute("id", "checkbox");
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("name", "checkbox");
-  checkbox.checked = task.check;
   checkbox.addEventListener("change", () => {
-    checkboxUpdate(task, checkbox);
+    updateCheckbox(task, checkbox.checked, checkbox);
   });
 
   descrWrap.appendChild(txtArea);
@@ -125,9 +122,11 @@ export default function newCard(task) {
   cardWrap.appendChild(cardInf);
   cardsContainer.appendChild(cardWrap);
 
+  // Generate default task info
   textareaWrap(task, txtArea);
-  changePriority(task, dropBtn, task.priority);
-  dateOutput(task, task.dueDate, dateLabel);
+  updatePriority(task, task.priority, dropBtn);
+  updateDate(task, task.dueDate, dateLabel);
+  updateCheckbox(task, task.check, checkbox);
 
   addCard(task);
   console.log(task);
