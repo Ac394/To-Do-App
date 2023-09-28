@@ -8,7 +8,7 @@ class Task {
     dueDate = new Date().toJSON().slice(0, 10),
     priority = "high",
     check = true,
-    project = "Lorem Ipsum"
+    project = null
   ) {
     this.description = description;
     this.dueDate = dueDate;
