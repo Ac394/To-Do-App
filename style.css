@@ -299,7 +299,7 @@ input[type="date"]::-ms-clear {
 .sidebar {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   height: 100vh;
   width: 150px;
@@ -307,6 +307,7 @@ input[type="date"]::-ms-clear {
   font-family: "Segoe UI", Arial, sans-serif;
   /* font-family: "Roboto", sans-serif; */
   margin-right: 25px;
+  padding-left: 10px;
 }
 
 .projects {
@@ -377,7 +378,7 @@ input[type="date"]::-ms-clear {
 }
 
 .sidebar-divider {
-  width: 80%;
+  width: 90%;
   border: none;
   border-top: 2px solid #091e4224;
   border-radius: 1px;
