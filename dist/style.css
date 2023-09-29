@@ -304,7 +304,8 @@ input[type="date"]::-ms-clear {
   height: 100vh;
   width: 150px;
   background-color: #ebecf0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
+  /* font-family: "Roboto", sans-serif; */
   margin-right: 25px;
 }
 
@@ -315,13 +316,13 @@ input[type="date"]::-ms-clear {
   gap: 6px;
 }
 
-.sidebar > button {
+.sidebar button {
   appearance: none;
   border: none;
   cursor: pointer;
   background: none;
   width: 90%;
-  height: 25px;
+  height: 30px;
   border-radius: 4px;
 }
 
@@ -330,14 +331,63 @@ input[type="date"]::-ms-clear {
   background-color: #091e4224;
 }
 
-.sidebar > button,
+.sidebar button,
 .sidebar h2 {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 400;
   color: var(--text-main);
+  text-align: left;
   /* color: #0c66e4; */
 }
 
 .sidebar > :first-child {
   margin-top: 12px;
+}
+
+.sidebar span {
+  font-size: 20px;
+  vertical-align: bottom;
+  line-height: 15px;
+  /* font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; */
+}
+
+.sidebar button span:first-of-type {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.projects {
+  width: 100%;
+}
+
+.arrow {
+  margin-left: 25px;
+}
+
+.projects-content {
+  list-style-type: none;
+  /* width: 120px; */
+}
+
+.projects-content button {
+  font-size: 14px;
+  text-align: start;
+  width: 135px;
+  padding-left: 20px;
+}
+
+.sidebar-divider {
+  width: 80%;
+  border: none;
+  border-top: 2px solid #091e4224;
+  border-radius: 1px;
+}
+
+.projects-content .material-symbols-rounded {
+  font-size: 18px;
+  transition: 0.2s ease-out;
+}
+
+.projects-content button:hover .material-symbols-rounded {
+  transform: translateX(5px);
 }
