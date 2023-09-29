@@ -308,7 +308,6 @@ input[type="date"]::-ms-clear {
   margin-right: 25px;
 }
 
-.home,
 .projects {
   display: flex;
   flex-direction: column;
