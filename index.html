@@ -17,19 +17,46 @@
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
   </head>
 
   <body>
     <div class="board">
       <div class="sidebar">
-        <button class="tablinks">Home</button>
-        <button class="tablinks">Today</button>
-        <button class="tablinks">Week</button>
-        <div class="projects">
-          <h2>Projects</h2>
-          <button class="new-project">New Project</button>
+        <button class="tablinks">
+          <span class="material-symbols-outlined"> dataset </span>Home
+        </button>
+        <button class="tablinks">
+          <span class="material-symbols-outlined"> calendar_view_day </span
+          >Today
+        </button>
+        <button class="tablinks">
+          <span class="material-symbols-outlined"> calendar_view_week </span
+          >Week
+        </button>
+        <hr class="sidebar-divider" />
+        <button>
+          <span class="material-symbols-outlined"> calendar_view_month </span
+          >Projects
+          <span class="material-symbols-outlined arrow"> add </span>
+        </button>
+        <div class="projects-dropdown">
+          <ul class="projects-content">
+            <li>
+              <button>
+                <span class="material-symbols-rounded"> chevron_right </span
+                >Project 1
+              </button>
+            </li>
+            <li></li>
+            <li>
+              <button>
+                <span class="material-symbols-rounded"> chevron_right </span
+                >Project 2
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="list">
