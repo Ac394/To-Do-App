@@ -47,9 +47,13 @@ html {
 }
 
 .title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
-  padding: 10px;
+  width: 90%;
+}
+
+.title:focus {
+  outline-color: #338fff;
 }
 
 .cards {
@@ -391,4 +395,19 @@ input[type="date"]::-ms-clear {
 
 .projects-content button:hover .material-symbols-rounded {
   transform: translateX(5px);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.project-header > button {
+  display: flex;
+  border: none;
+}
+
+.project-header > button:hover {
+  color: #338fff;
 }
