@@ -1,6 +1,9 @@
 import newCard from "./cardCreate";
+import createProject from "./projectCreate";
 
 export const tasks = [];
+
+createProject();
 
 class Task {
   constructor(
