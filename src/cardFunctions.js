@@ -1,5 +1,5 @@
 import { compareAsc, format, parseISO, parse } from "date-fns";
-import { tasks } from ".";
+import { projects } from ".";
 
 export function updateDate(task, newValue, element) {
   const dateFormat = format(parseISO(newValue), "dd MMM yyyy");
@@ -109,20 +109,20 @@ export function updateCheckbox(task, newValue, checkbox) {
   console.log(task.check);
 }
 
-export function deleteTask(taskToDelete) {
-  const taskIndex = tasks.indexOf(taskToDelete);
+export function deleteTask(taskToDelete, project) {
+  const taskIndex = project.tasks.indexOf(taskToDelete);
   if (taskIndex !== -1) {
-    tasks.splice(taskIndex, 1);
+    project.tasks.splice(taskIndex, 1);
   }
   updateStorage();
 }
 
-export function addCard(taskToAdd) {
-  tasks.push(taskToAdd);
+export function addCard(taskToAdd, project) {
+  project.tasks.push(taskToAdd);
   updateStorage();
 }
 
 function updateStorage() {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-  console.log(`This is the array from update ${tasks}`);
+  localStorage.setItem("projects", JSON.stringify(projects));
+  console.log(`This is the array from update ${projects}`);
 }

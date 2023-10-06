@@ -1,4 +1,7 @@
-export default function createProject() {
+import newCard from "./cardCreate";
+import { Task } from "./projectFunctions";
+
+export default function createList(project) {
   const board = document.querySelector(".board");
 
   const newEl = (e) => {
@@ -14,19 +17,11 @@ export default function createProject() {
   const title = newEl("h2");
   title.classList.add("title");
   title.contentEditable = "false";
+  title.innerHTML = project.name;
+  title.addEventListener("change", () => {});
   title.addEventListener("keydown", (e) => {
-    if (
-      e.key == "ArrowLeft" ||
-      e.key == "ArrowRight" ||
-      e.key == "Delete" ||
-      e.key == "Backspace"
-    )
-      return;
     if (e.key === "Enter" || e.key === "Escape") {
       title.blur();
-    }
-    if (title.innerText.length >= 20) {
-      e.preventDefault();
     }
   });
   title.addEventListener("blur", () => (title.contentEditable = "false"));
@@ -50,6 +45,7 @@ export default function createProject() {
 
   const addBtn = newEl("button");
   addBtn.classList.add("add-task");
+  addBtn.addEventListener("click", () => newCard(new Task(), project));
 
   const addIcon = newEl("span");
   addIcon.classList.add("material-symbols-outlined");

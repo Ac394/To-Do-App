@@ -7,7 +7,7 @@ import {
   updateCheckbox,
 } from "./cardFunctions.js";
 
-export default function newCard(task) {
+export default function newCard(task, project) {
   const newEl = (e) => {
     return document.createElement(`${e}`);
   };
@@ -93,7 +93,7 @@ export default function newCard(task) {
   delIcon.classList.add("material-symbols-outlined");
   delIcon.addEventListener("click", () => {
     cardWrap.remove();
-    deleteTask(task);
+    deleteTask(task, project);
   });
 
   const checkbox = newEl("input");
@@ -128,6 +128,6 @@ export default function newCard(task) {
   updateDate(task, task.dueDate, dateLabel);
   updateCheckbox(task, task.check, checkbox);
 
-  addCard(task);
-  console.log(task);
+  addCard(task, project);
+  console.log(project);
 }
