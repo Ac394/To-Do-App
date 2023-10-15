@@ -7,7 +7,7 @@ import {
   updateCheckbox,
 } from "./cardFunctions.js";
 
-export default function newCard(task, project) {
+export default function createCard(task, project, isNew) {
   const newEl = (e) => {
     return document.createElement(`${e}`);
   };
@@ -128,6 +128,7 @@ export default function newCard(task, project) {
   updateDate(task, task.dueDate, dateLabel);
   updateCheckbox(task, task.check, checkbox);
 
-  addCard(task, project);
-  console.log(project);
+  if (isNew) {
+    addCard(task, project);
+  }
 }

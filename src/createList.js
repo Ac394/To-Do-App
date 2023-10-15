@@ -1,7 +1,9 @@
-import newCard from "./cardCreate";
-import { Task } from "./projectFunctions";
+import { Task } from "./defaultClasses";
+import { projects } from ".";
+import createCard from "./createCard";
 
-export default function createList(project) {
+export default function createList(projectID) {
+  const project = projects.find((e) => e.id === projectID);
   const board = document.querySelector(".board");
 
   const newEl = (e) => {
@@ -45,7 +47,7 @@ export default function createList(project) {
 
   const addBtn = newEl("button");
   addBtn.classList.add("add-task");
-  addBtn.addEventListener("click", () => newCard(new Task(), project));
+  addBtn.addEventListener("click", () => createCard(new Task(), project, true));
 
   const addIcon = newEl("span");
   addIcon.classList.add("material-symbols-outlined");
@@ -60,4 +62,26 @@ export default function createList(project) {
   cards.append(cardsContainer, addBtn);
   list.append(projectHeader, cards);
   board.appendChild(list);
+
+  console.log(`THE LENGHT ${project.tasks.length}`);
+
+  // if (project.tasks.length !== 0) {
+  //   project.tasks.forEach((task) => {
+  //     createCard(
+  //       new Task(
+  //         task.description,
+  //         task.dueDate,
+  //         task.priority,
+  //         task.check,
+  //         task.project
+  //       ),
+  //       project
+  //     );
+  //   });
+  // }
+  if (project.tasks.length !== 0) {
+    project.tasks.forEach((task) => {
+      createCard(task, project);
+    });
+  }
 }

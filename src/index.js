@@ -1,9 +1,9 @@
-import newCard from "./cardCreate";
 import createList from "./createList";
-import { Task } from "./projectFunctions";
+import { createProject, addProject } from "./createProject";
 
 export let projects = [
   {
+    id: 1,
     name: "Home",
     tasks: [],
   },
@@ -11,24 +11,33 @@ export let projects = [
 
 // Get tasks from local storage and generate UI
 (() => {
-  createList(projects[0]);
   const storedProjectsString = localStorage.getItem("projects");
   const storedProjects = JSON.parse(storedProjectsString);
-  console.log(`This is the original ${storedProjectsString}`);
-  console.log(`This is parse objects ${storedProjects}`);
+  // console.log(`This is the original ${storedProjectsString}`);
+  // console.log(`This is parse objects ${storedProjects}`);
   if (storedProjectsString !== null) {
     projects = storedProjects;
-    console.log(`This is projects ${projects}`);
-    projects[0].tasks.forEach((task) => {
-      const d = task.description,
-        dd = task.dueDate,
-        p = task.priority,
-        c = task.check,
-        pr = task.project;
-
-      newCard(new Task(d, dd, p, c, pr), projects[0]);
-    });
+    // console.log(`This is projects ${projects}`);
+    // projects[0].tasks.forEach((task) => {
+    //   createCard(
+    //     new Task(
+    //       task.description,
+    //       task.dueDate,
+    //       task.priority,
+    //       task.check,
+    //       task.project
+    //     ),
+    //     projects[0]
+    //   );
+    // });
   }
+  createList(1);
+  addProject();
+  projects.forEach((project) => {
+    if (project.id !== 1) {
+      createProject(project.id);
+    }
+  });
 })();
 
 // Event listener for Add Task button
@@ -36,19 +45,5 @@ export let projects = [
 // addTask.addEventListener("click", () => newCard(new Task()));
 
 // Click title to debug
-const title = document.querySelector(".title");
-title.addEventListener("click", () => console.log(tasks));
-
-const addProject = document.querySelector(".add-project");
-addProject.addEventListener("click", () => {
-  const ul = document.querySelector(".projects-content");
-  const li = document.createElement("li");
-  const btn = document.createElement("button");
-  btn.innerText = "New Project";
-  const span = document.createElement("span");
-  span.classList.add("material-symbols-rounded");
-  span.innerHTML = "chevron_right";
-  btn.prepend(span);
-  li.appendChild(btn);
-  ul.appendChild(li);
-});
+// const title = document.querySelector(".title");
+// title.addEventListener("click", () => console.log(tasks));
