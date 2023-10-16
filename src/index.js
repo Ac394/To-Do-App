@@ -1,4 +1,5 @@
 import createList from "./createList";
+import { clearList, allList, todayList, weekList } from "./listFunctions";
 import { createProject, addProject } from "./createProject";
 
 export let projects = [
@@ -17,21 +18,9 @@ export let projects = [
   // console.log(`This is parse objects ${storedProjects}`);
   if (storedProjectsString !== null) {
     projects = storedProjects;
-    // console.log(`This is projects ${projects}`);
-    // projects[0].tasks.forEach((task) => {
-    //   createCard(
-    //     new Task(
-    //       task.description,
-    //       task.dueDate,
-    //       task.priority,
-    //       task.check,
-    //       task.project
-    //     ),
-    //     projects[0]
-    //   );
-    // });
   }
-  createList(1);
+  projects.forEach((project) => allList(project));
+  // createList(1);
   addProject();
   projects.forEach((project) => {
     if (project.id !== 1) {
@@ -40,10 +29,16 @@ export let projects = [
   });
 })();
 
-// Event listener for Add Task button
-// const addTask = document.querySelector(".add-task");
-// addTask.addEventListener("click", () => newCard(new Task()));
+// Home button event listener
+const homeBtn = document.querySelector(".home");
+homeBtn.addEventListener("click", () => {
+  clearList();
+  projects.forEach((project) => allList(project));
+  // allList(projects[0]);
+});
 
-// Click title to debug
-// const title = document.querySelector(".title");
-// title.addEventListener("click", () => console.log(tasks));
+// import { isThisWeek } from "date-fns";
+// (() => {
+//   const thisWeek = isThisWeek(new Date());
+//   console.log(`This is the new week ${thisWeek}`);
+// })();

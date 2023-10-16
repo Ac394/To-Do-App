@@ -1,5 +1,6 @@
 import { compareAsc, format, parseISO, parse } from "date-fns";
 import { projects } from ".";
+import updateStorage from "./storageFunctions";
 
 export function updateDate(task, newValue, element) {
   const dateFormat = format(parseISO(newValue), "dd MMM yyyy");
@@ -120,9 +121,4 @@ export function deleteTask(taskToDelete, project) {
 export function addCard(taskToAdd, project) {
   project.tasks.push(taskToAdd);
   updateStorage();
-}
-
-function updateStorage() {
-  localStorage.setItem("projects", JSON.stringify(projects));
-  console.log(`This is the array from update ${projects}`);
 }

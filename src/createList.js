@@ -1,8 +1,9 @@
 import { Task } from "./defaultClasses";
 import { projects } from ".";
 import createCard from "./createCard";
+import updateStorage from "./storageFunctions";
 
-export default function createList(projectID) {
+export default function createList(projectID, listTitle) {
   const project = projects.find((e) => e.id === projectID);
   const board = document.querySelector(".board");
 
@@ -20,7 +21,11 @@ export default function createList(projectID) {
   title.classList.add("title");
   title.contentEditable = "false";
   title.innerHTML = project.name;
-  title.addEventListener("change", () => {});
+  title.addEventListener("input", () => {
+    project.name = title.innerHTML;
+    listTitle.lastChild.textContent = title.innerHTML;
+    updateStorage();
+  });
   title.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === "Escape") {
       title.blur();
@@ -30,6 +35,9 @@ export default function createList(projectID) {
 
   const editBtn = newEl("button");
   editBtn.classList.add("edit-title");
+  if (!listTitle) {
+    editBtn.style.display = "none";
+  }
   editBtn.addEventListener("click", () => {
     title.contentEditable = "true";
     title.focus();
@@ -63,25 +71,9 @@ export default function createList(projectID) {
   list.append(projectHeader, cards);
   board.appendChild(list);
 
-  console.log(`THE LENGHT ${project.tasks.length}`);
-
   // if (project.tasks.length !== 0) {
   //   project.tasks.forEach((task) => {
-  //     createCard(
-  //       new Task(
-  //         task.description,
-  //         task.dueDate,
-  //         task.priority,
-  //         task.check,
-  //         task.project
-  //       ),
-  //       project
-  //     );
+  //     createCard(task, project);
   //   });
   // }
-  if (project.tasks.length !== 0) {
-    project.tasks.forEach((task) => {
-      createCard(task, project);
-    });
-  }
 }

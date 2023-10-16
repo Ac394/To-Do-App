@@ -1,15 +1,13 @@
 import createList from "./createList";
 import { projects } from ".";
 import { Project } from "./defaultClasses";
+import updateStorage from "./storageFunctions";
+import { clearList } from "./listFunctions";
+import { allList } from "./listFunctions";
 
 export function createProject(projectID) {
   const project = projects.find((e) => e.id === projectID);
   createProjectBtn(project);
-}
-
-function updateStorage() {
-  localStorage.setItem("projects", JSON.stringify(projects));
-  console.log(`This is the array from update ${projects}`);
 }
 
 const createProjectBtn = (project) => {
@@ -19,7 +17,7 @@ const createProjectBtn = (project) => {
   btn.innerText = project.name;
   btn.addEventListener("click", () => {
     clearList();
-    createList(project.id);
+    allList(project, btn);
   });
   const span = document.createElement("span");
   span.classList.add("material-symbols-rounded");
@@ -37,9 +35,4 @@ export function addProject() {
     projects.push(newProject);
     updateStorage();
   });
-}
-
-function clearList() {
-  const list = document.querySelector(".list");
-  list.remove();
 }
