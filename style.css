@@ -383,6 +383,8 @@ input[type="date"]::-ms-clear {
   text-align: start;
   width: 135px;
   padding-left: 20px;
+  text-wrap: nowrap;
+  overflow: hidden;
 }
 
 .sidebar-divider {
