@@ -44,6 +44,8 @@ html {
   font-family: "Roboto", sans-serif;
   color: #172b4d;
   padding-bottom: 10px;
+  margin-right: 25px;
+  margin-top: 12px;
 }
 
 .title {
@@ -54,10 +56,26 @@ html {
   padding: 4px;
   overflow: hidden;
   text-wrap: nowrap;
+  margin-right: 2px;
 }
 
 .title:focus {
   outline-color: #338fff;
+}
+
+.delete-project .material-symbols-outlined {
+  display: none;
+}
+
+.list:not(.home-card)
+  .project-header:hover
+  .delete-project
+  .material-symbols-outlined {
+  display: block;
+}
+
+.delete-project .material-symbols-outlined:hover {
+  color: var(--color-red);
 }
 
 .cards {
@@ -340,8 +358,14 @@ input[type="date"]::-ms-clear {
   background-color: #091e4224;
 }
 
+.sidebar .active {
+  /* color: #338fff; */
+  background-color: #091e4224;
+}
+
 .sidebar button,
-.sidebar h2 {
+.sidebar h2,
+.sidebar .sidebar-project {
   font-size: 15px;
   font-weight: 400;
   color: var(--text-main);

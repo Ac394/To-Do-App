@@ -12,7 +12,9 @@ export default function createCard(task, project, isNew) {
     return document.createElement(`${e}`);
   };
 
-  const cardsContainer = document.querySelector(".cards-container");
+  const cardsContainer = document
+    .getElementById(project.id)
+    .querySelector(".cards-container");
 
   const cardWrap = newEl("a");
   cardWrap.classList.add("card-wrapper");

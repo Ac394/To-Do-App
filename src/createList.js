@@ -1,5 +1,5 @@
-import { Task } from "./defaultClasses";
-import { projects } from ".";
+import { Task } from "./taskFunctions";
+// import { projects } from ".";
 import createCard from "./createCard";
 import updateStorage from "./storageFunctions";
 
@@ -13,6 +13,7 @@ export default function createList(projectID, listTitle) {
 
   const list = newEl("div");
   list.classList.add("list");
+  list.setAttribute("id", projectID);
 
   const projectHeader = newEl("div");
   projectHeader.classList.add("project-header");
@@ -23,7 +24,8 @@ export default function createList(projectID, listTitle) {
   title.innerHTML = project.name;
   title.addEventListener("input", () => {
     project.name = title.innerHTML;
-    listTitle.lastChild.textContent = title.innerHTML;
+    document.querySelectorAll(".sidebar-project")[projectID - 2].innerText =
+      title.innerHTML;
     updateStorage();
   });
   title.addEventListener("keydown", (e) => {
@@ -35,7 +37,7 @@ export default function createList(projectID, listTitle) {
 
   const editBtn = newEl("button");
   editBtn.classList.add("edit-title");
-  if (!listTitle) {
+  if (project.id === 1) {
     editBtn.style.display = "none";
   }
   editBtn.addEventListener("click", () => {
