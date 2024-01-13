@@ -1,4 +1,3 @@
-import List from "./listFunctions";
 import Storage from "./storageFunctions";
 import { todoList } from ".";
 import { Task } from "./taskFunctions";
@@ -249,7 +248,6 @@ export default class UI {
 
     if (isNew) {
       project.addTask(task);
-      //   Storage.saveList();
     }
   }
 

@@ -1,5 +1,3 @@
-import { projects } from ".";
-
 export class Task {
   constructor(
     description = "",
@@ -47,11 +45,3 @@ export class Task {
     return this.check;
   }
 }
-
-// export class Project {
-//   constructor(id = projects.length + 1, name = "New Project", tasks = []) {
-//     this.id = id;
-//     this.name = name;
-//     this.tasks = tasks;
-//   }
-// }

@@ -1,5 +1,3 @@
-import { todoList } from ".";
-import List from "./listFunctions";
 import { format, isThisWeek } from "date-fns";
 
 export default class Project {

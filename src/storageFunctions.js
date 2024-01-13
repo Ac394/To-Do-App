@@ -1,4 +1,3 @@
-// import { projects } from ".";
 import List from "./listFunctions";
 import Project from "./projectFunctions";
 import { Task } from "./taskFunctions";
@@ -10,7 +9,6 @@ export default class Storage {
   }
 
   static getList() {
-    // const storedList = localStorage.getItem("todoList");
     const storedList = JSON.parse(localStorage.getItem("todoList"));
     const todoList = new List();
 
